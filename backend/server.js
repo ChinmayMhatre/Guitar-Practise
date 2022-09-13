@@ -17,5 +17,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(errorHandler);
 
 app.use("/api/tasks", require("./routes/taskRoutes"));
+app.use("/api/users", require("./routes/userRoutes"));
+app.use("/api/practise", require("./routes/practiseRoutes"));
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
