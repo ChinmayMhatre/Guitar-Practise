@@ -1,12 +1,59 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,useContext } from "react";
+import userContext from "../features/auth/userContext";
+import {useNavigate} from "react-router-dom";
+import {toast} from "react-toastify";
+import authService from "../features/auth/authService";
 
 function Login() {
+    const navigate = useNavigate();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const {user,setUser} = useContext(userContext);
+    
 
-    const onSubmit = (e) => {
+    useEffect(() => {
+        const lsUser = JSON.parse(localStorage.getItem("user"));
+        if (lsUser) {
+            const current = {
+                name: lsUser.name,
+                email: lsUser.email,
+            };
+            setUser(current);
+            navigate("/dashboard");
+        }else{
+            setUser(null);
+        }
+    }, []);
+
+    const onSubmit = async (e) => {
         e.preventDefault();
-        console.log("submit");
+        if( email==="" || password==="" ){
+            toast.error("Please fill all the fields");
+            return;
+        }
+        const userData = {
+            email,
+            password,
+        }
+        const result = await authService.login(userData)
+        if(result.name == "AxiosError"){
+            toast.error("Internal Server Error");
+            return;
+        }else{
+            toast.success("Registration Successful");
+            const user = {
+                name: result.name,
+                email: result.email,
+                token: result.token,
+            };
+            localStorage.setItem("user", JSON.stringify(user));
+            setUser({name:user.name,email:user.email});
+            setEmail("");
+            setPassword("");
+            navigate("/");
+        }
+
+
     };
 
     return (
@@ -23,7 +70,7 @@ function Login() {
                             id="email"
                             className="form-control"
                             value={email}
-                            onChange={(text) => setEmail(text)}
+                            onChange={(e) => setEmail(e.target.value)}
                             placeholder="Enter Your Email"
                         />
                     </div>
@@ -33,7 +80,7 @@ function Login() {
                             id="password"
                             className="form-control"
                             value={password}
-                            onChange={(text) => setPassword(text)}
+                            onChange={(e) => setPassword(e.target.value)}
                             placeholder="Enter Your Password"
                         />
                     </div>

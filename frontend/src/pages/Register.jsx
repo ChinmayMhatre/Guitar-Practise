@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from "react";
-import Box from "@mui/joy/Box";
-import TextField from "@mui/material/TextField";
+import React, { useState, useEffect,useContext } from "react";
+import userContext from "../features/auth/userContext";
+import {toast} from "react-toastify";
+import {useNavigate} from "react-router-dom";
+import authService from "../features/auth/authService";
 
 function Register() {
     const [name, setName] = useState("");
@@ -8,9 +10,74 @@ function Register() {
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
 
-    const onSubmit = (e) => {
+    const navigate = useNavigate();
+    const {
+        user,
+        setUser
+    } = useContext(userContext);
+
+    useEffect(() => {
+        const lsUser = JSON.parse(localStorage.getItem("user"));
+        console.log(lsUser);
+        if (lsUser) {
+            const current = {
+                name: lsUser.name,
+                email: lsUser.email,
+            };
+            setUser(current);
+            navigate("/");
+        }else{
+            setUser(null);
+            
+        }
+    }, []);
+    
+
+
+    const onSubmit = async (e) => {
         e.preventDefault();
-        console.log("submit");
+
+        if(name==="" || email==="" || password==="" || confirmPassword===""){
+            toast.error("Please fill all the fields");
+            return;
+        }
+        if(password !== confirmPassword){
+            toast.error("Passwords do not match");
+            return;
+        }
+        if(password.length<6){
+            toast.error("Password must be atleast 6 characters long");
+            return;
+        }
+        if(name.length<3){
+            toast.error("Name must be atleast 3 characters long");
+            return;
+        }
+            const userData = {
+                name,
+                email,
+                password,
+            }
+        const result = await authService.register(userData)
+        if(result.name == "AxiosError"){
+            toast.error("Internal Server Error");
+            return;
+        }else{
+            toast.success("Registration Successful");
+            const user = {
+                name: result.name,
+                email: result.email,
+                token: result.token,
+            };
+            localStorage.setItem("user", JSON.stringify(user));
+            setUser({name:user.name,email:user.email});
+            setName("");
+            setEmail("");
+            setPassword("");
+            setConfirmPassword("");
+            navigate("/");
+        }
+        console.log(result);
     };
 
     return (
@@ -27,7 +94,7 @@ function Register() {
                             id="name"
                             className="form-control"
                             value={name}
-                            onChange={(text) => setName(text)}
+                            onChange={(e) => setName(e.target.value)}
                             placeholder="Enter Your Name"
                         />
                     </div>
@@ -37,7 +104,7 @@ function Register() {
                             id="email"
                             className="form-control"
                             value={email}
-                            onChange={(text) => setEmail(text)}
+                            onChange={(e) => setEmail(e.target.value)}
                             placeholder="Enter Your Email"
                         />
                     </div>
@@ -47,7 +114,7 @@ function Register() {
                             id="password"
                             className="form-control"
                             value={password}
-                            onChange={(text) => setPassword(text)}
+                            onChange={(e) => setPassword(e.target.value)}
                             placeholder="Enter Your Password"
                         />
                     </div>
@@ -57,7 +124,7 @@ function Register() {
                             id="confirmPassword"
                             className="form-control"
                             value={confirmPassword}
-                            onChange={(text) => setConfirmPassword(text)}
+                            onChange={(e) => setConfirmPassword(e.target.value)}
                             placeholder="Confirm Your Password"
                         />
                     </div>

@@ -5,6 +5,9 @@ import {
     Switch,
 } from "react-router-dom";
 
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 import Dashboard from "./pages/Dashboard";
 import Landing from "./pages/Landing";
 import Login from "./pages/Login";
@@ -12,21 +15,41 @@ import Register from "./pages/Register";
 import Profile from "./pages/Profile";
 import Header from "./components/Header";
 
+import { UserProvider } from "./features/auth/userContext";
+import { TaskProvider } from "./features/tasks/TaskContext";
+import { PractiseProvider } from "./features/practise/PractiseContext";
+
 function App() {
     return (
         <>
-            <Router>
-                <div className="container">
-                    <Header />
-                    <Routes>
-                      <Route path="/" element={<Dashboard/>} />
-                      <Route path="/login" element={<Login/>} />
-                      <Route path="/register" element={<Register/>} />
-                      <Route path="/profile" element={<Profile/>} />
-                      <Route path="/landing" element={<Landing/>} />
-                    </Routes>
-                </div>
-            </Router>
+            <UserProvider>
+                <TaskProvider>
+                    <PractiseProvider>
+                        <Router>
+                            <div className="container">
+                                <Header />
+                                <Routes>
+                                    <Route path="/dashboard" element={<Dashboard />} />
+                                    <Route path="/login" element={<Login />} />
+                                    <Route
+                                        path="/register"
+                                        element={<Register />}
+                                    />
+                                    <Route
+                                        path="/profile"
+                                        element={<Profile />}
+                                    />
+                                    <Route
+                                        path="/landing"
+                                        element={<Landing />}
+                                    />
+                                </Routes>
+                            </div>
+                        </Router>
+                        <ToastContainer />
+                    </PractiseProvider>
+                </TaskProvider>
+            </UserProvider>
         </>
     );
 }

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState,useContext,useEffect } from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -12,16 +12,42 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
+import { useNavigate } from "react-router-dom";
 
 import { Link } from "react-router-dom";
+import userContext from "../features/auth/userContext";
+
+
 
 const pages = ["Login", "Register"];
-const settings = ["Profile", "Account", "Dashboard", "Logout"];
+const settings = ["Dashboard","Profile","Logout"];
 
 function Header() {
+const navigate = useNavigate();
+
     const [anchorElNav, setAnchorElNav] = useState(null);
     const [anchorElUser, setAnchorElUser] = useState(null);
+    const {user,setUser} = useContext(userContext);
     const [auth, setAuth] = useState(false);
+
+    useEffect(() => {
+        const lsUser = JSON.parse(localStorage.getItem("user"));
+        console.log(lsUser);
+        if (!lsUser) {
+            setAuth(false);
+        } else {
+            // if user context already has this ignore.
+            if(user){
+                const current = {
+                    name: lsUser.name,
+                    email: lsUser.email,
+                };
+                setUser(current);
+            }   
+            setAuth(true);
+        }
+    }, [navigate])
+    
 
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
@@ -33,6 +59,18 @@ function Header() {
     const handleCloseNavMenu = () => {
         setAnchorElNav(null);
     };
+
+    const handleLogout = () => {
+        localStorage.removeItem("user");
+        handleCloseUserMenu();
+        navigate("/login");
+    };
+
+    const handleNavigate  = (page) => {
+        handleCloseUserMenu();
+        navigate(`/${page.toLowerCase()}`);
+    }
+
 
     const handleCloseUserMenu = () => {
         setAnchorElUser(null);
@@ -135,7 +173,8 @@ function Header() {
                     >
                         LOGO
                     </Typography>
-                    <Box
+                    {!auth?(
+                        <Box
                         sx={{
                             flexGrow: 1,
                             display: {
@@ -164,9 +203,15 @@ function Header() {
                             </Link>
                         ))}
                     </Box>
-
-                    <Box sx={{ flexGrow: 0 }}>
-                        {/* <Tooltip title="Open settings">
+                    ):(
+                        <Box sx={{ 
+                            flexGrow: 1,
+                            display: {
+                                xs: "none",
+                                md: "flex",
+                                justifyContent: "end",
+                            }, }}>
+                        <Tooltip title="Open settings">
                             <IconButton
                                 onClick={handleOpenUserMenu}
                                 sx={{ p: 0 }}
@@ -176,8 +221,8 @@ function Header() {
                                     src="/static/images/avatar/2.jpg"
                                 />
                             </IconButton>
-                        </Tooltip> */}
-                        {/* <Menu
+                        </Tooltip>
+                        <Menu
                             sx={{ mt: "45px" }}
                             id="menu-appbar"
                             anchorEl={anchorElUser}
@@ -194,17 +239,34 @@ function Header() {
                             onClose={handleCloseUserMenu}
                         >
                             {settings.map((setting) => (
-                                <MenuItem
-                                    key={setting}
-                                    onClick={handleCloseUserMenu}
-                                >
-                                    <Typography textAlign="center">
-                                        {setting}
-                                    </Typography>
-                                </MenuItem>
+                                setting === "Logout" ? (
+                                    <MenuItem
+                                        key={setting}
+                                        onClick={handleLogout}
+                                    >
+                                        <Typography textAlign="center">
+                                            {setting}
+                                        </Typography>
+                                    </MenuItem>
+                                ) : (
+                                    <MenuItem
+                                        key={setting}
+                                        onClick={()=>handleNavigate(setting)}
+                                    >
+                                        <Typography textAlign="center">
+                                            {setting}
+                                        </Typography>
+                                    </MenuItem>
+                                )
+                                    
+                                
                             ))}
-                        </Menu> */}
+                        </Menu>
                     </Box>
+                    )}
+                    
+
+                    
                 </Toolbar>
             </Container>
         </AppBar>
