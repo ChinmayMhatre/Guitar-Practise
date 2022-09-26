@@ -50,7 +50,7 @@ function Login() {
             setUser({name:user.name,email:user.email});
             setEmail("");
             setPassword("");
-            navigate("/");
+            navigate("/dashboard");
         }
 
 

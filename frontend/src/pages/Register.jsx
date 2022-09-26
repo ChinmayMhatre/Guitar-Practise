@@ -25,7 +25,7 @@ function Register() {
                 email: lsUser.email,
             };
             setUser(current);
-            navigate("/");
+            navigate("/dashboard");
         }else{
             setUser(null);
             
@@ -75,7 +75,7 @@ function Register() {
             setEmail("");
             setPassword("");
             setConfirmPassword("");
-            navigate("/");
+            navigate("/dashboard");
         }
         console.log(result);
     };

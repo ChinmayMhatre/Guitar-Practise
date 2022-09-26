@@ -98,31 +98,34 @@ function Dashboard() {
 
     return (
         <>
-            <div className="container">
+            <div className="container" id="dashboard">
                 <Grid
                     container
                     rowSpacing={1}
-                    columnSpacing={{ xs: 1, sm: 2, md: 3 }}
-                    sx={{ height: "100%" }}
+                    columnSpacing={{ xs: 1, sm: 2, md: 0 }}
+                    
                 >
                     <Grid
                         item
                         xs={12}
                         md={12}
-                        lg={6}
-                        sx={{ position: "relative" }}
+                        lg={4}
+                        sx={{
+                        position: "relative"
+                        }}
+                        
                     >
                         <Box
+                            className="glass-dense"
                             sx={{
-                                bgcolor: "#89CFF0",
-                                boxShadow: 1,
                                 pr: 2,
                                 p: 2,
-                                borderRadius: 2,
-                                m: 2,
-                                height: "85vh",
+                                ml: 6,
+                                my: 2,
+                                maxHeight: "85vh",
                                 overflowY: "scroll",
                             }}
+                            
                         >
                             <Typography
                                 sx={{ mt: 4, mb: 2 }}
@@ -145,7 +148,7 @@ function Dashboard() {
                                                                 "easy"
                                                                     ? "#4caf50"
                                                                     : el.difficulty ===
-                                                                      "medium"
+                                                                        "medium"
                                                                     ? "#ff9800"
                                                                     : "#f44336"
                                                             }`,
@@ -185,6 +188,11 @@ function Dashboard() {
                                             >
                                                 <ListItemText
                                                     primary={el.title}
+                                                    primaryTypographyProps={{
+                                                        fontSize:17,
+                                                        fontWeight: 600,
+                                                        color: "#308878"
+                                                    }}
                                                     secondary={
                                                         el.duration + " Minutes"
                                                     }
@@ -194,28 +202,33 @@ function Dashboard() {
                                     );
                                 })}
                             </List>
-                            <Fab
-                                color="primary"
+                            
+                        </Box>
+                        <Fab
+                                
                                 aria-label="add"
                                 sx={{
                                     position: "absolute",
-                                    bottom: 30,
+                                    bottom: 50,
                                     right: 50,
+                                    background: '#65dfc9'
                                 }}
                                 onClick={handleNewOpen}
                             >
                                 <AddIcon />
                             </Fab>
-                        </Box>
                     </Grid>
-                    <Grid item xs={12} md={12} lg={6}>
+                    <Grid item xs={12} md={12} lg={8}>
                         <Box
+                            className = "glass"
+                            id = "dashboardGrid2"
                             sx={{
-                                boxShadow: 1,
+                                pr: 2,
                                 p: 2,
-                                borderRadius: 2,
-                                m: 2,
-                                height: "100%",
+                                mr: 6,
+                                my: 2,
+                                height: "85vh",
+                                overflowY: "scroll",
                             }}
                         >
                             <PerformTask id={currentTaskId} />
@@ -229,6 +242,8 @@ function Dashboard() {
                 handleClose={handleEditClose}
                 editTask={editTask}
             />
+            <div className="circle1"></div>
+            <div className="circle2"></div>
             {/* <div>
             <h1>Dashboard</h1>
             <h2>{user?user.name:""}</h2>

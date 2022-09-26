@@ -34,8 +34,8 @@ function NewModal({ open, handleClose }) {
         left: "50%",
         transform: "translate(-50%, -50%)",
         width: 400,
-        bgcolor: "background.paper",
-        border: "2px solid #000",
+        borderRadius: 5,
+        background:"white",
         boxShadow: 24,
         p: 4,
     };
@@ -100,7 +100,8 @@ function NewModal({ open, handleClose }) {
             }}
         >
             <Fade in={open}>
-                <Box sx={modalStyle}>
+                <Box
+                sx={modalStyle}>
                     <Typography
                         id="transition-modal-title"
                         variant="h6"

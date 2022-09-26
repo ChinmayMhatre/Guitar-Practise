@@ -77,7 +77,11 @@ const navigate = useNavigate();
     };
 
     return (
-        <AppBar position="static">
+        <AppBar position="static" 
+            color="transparent"
+            className = "glass"
+            id = "appbar"
+        >
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
                     <Link to="/">
