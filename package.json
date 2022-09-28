@@ -2,7 +2,7 @@
   "name": "practise-makes-perfect",
   "version": "1.0.0",
   "description": "Tools for your guitar practise session in one place",
-  "main": "server.js",
+  "main": "frontend/server.js",
   "scripts": {
     "start": "node backend/server.js",
     "server": "nodemon backend/server.js",
