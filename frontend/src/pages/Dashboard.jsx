@@ -55,6 +55,7 @@ function Dashboard() {
             const current = {
                 name: lsUser.name,
                 email: lsUser.email,
+                avatar: lsUser.avatar
             };
             setUser(current);
         }
@@ -127,13 +128,6 @@ function Dashboard() {
                             }}
                             
                         >
-                            <Typography
-                                sx={{ mt: 4, mb: 2 }}
-                                variant="h6"
-                                component="div"
-                            >
-                                Avatar with text and icon
-                            </Typography>
                             <List dense={false}>
                                 {tasks.map((el) => {
                                     return (

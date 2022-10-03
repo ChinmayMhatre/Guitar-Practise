@@ -41,6 +41,7 @@ const navigate = useNavigate();
                 const current = {
                     name: lsUser.name,
                     email: lsUser.email,
+                    avatar:lsUser.avatar
                 };
                 setUser(current);
             }   
@@ -222,7 +223,7 @@ const navigate = useNavigate();
                             >
                                 <Avatar
                                     alt="Remy Sharp"
-                                    src="/static/images/avatar/2.jpg"
+                                    src={user.avatar}
                                 />
                             </IconButton>
                         </Tooltip>

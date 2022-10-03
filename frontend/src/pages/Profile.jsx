@@ -24,6 +24,7 @@ function Profile() {
             const current = {
                 name: lsUser.name,
                 email: lsUser.email,
+                avatar: lsUser.avatar
             };
             setUser(current);
             getPractiseData();
@@ -63,11 +64,10 @@ function Profile() {
                     alignItems: "center",
                 }}
             >
-                <Avatar
-                    sx={{ bgcolor: deepPurple[500], height: 100, width: 100 }}
-                >
-                    OP
-                </Avatar>
+                    <img style={{
+                        height: "100px",
+                        width: "100px"
+                    }} src={user.avatar}/>
                 {user ? (
                     <>
                         <h1>{user.name}</h1>

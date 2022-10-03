@@ -49,7 +49,37 @@ const setPractiseData = asyncHandler(async (req, res) => {
 
 
 const deletePractiseData = asyncHandler(async (req, res) => {
-    res.status(200).json({ message: "Practise data deleted" });
+    // deletes practise data of past 7 days
+
+    // get 7 days before date
+
+
+
+    var dateObj = new Date();
+
+    dateObj.setDate(dateObj.getDate() - 7);
+
+    var month = dateObj.getUTCMonth() + 1; //months from 1-12
+    var day = dateObj.getUTCDate() + 1;
+    var year = dateObj.getUTCFullYear();
+    newdate = year + "/" + month + "/" + day;
+
+    try {
+        console.log(newdate);
+        const practise = await Practise.deleteMany({
+            Date: { $lt: newdate },
+            user: req.user._id,
+        });
+        console.log(practise);
+        res.status(200).json(practise);
+
+        
+    } catch (error) {
+        console.log(error);
+    res.status(400).json(error);
+
+    }
+
 });
 
 

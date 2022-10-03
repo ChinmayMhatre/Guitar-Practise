@@ -64,13 +64,17 @@ function Register() {
             return;
         }else{
             toast.success("Registration Successful");
+
+            const num = Math.floor(Math.random() * 100 ) + 1
+            const avatar = `https://avatars.dicebear.com/api/bottts/${num}.svg`
             const user = {
                 name: result.name,
                 email: result.email,
                 token: result.token,
+                avatar
             };
             localStorage.setItem("user", JSON.stringify(user));
-            setUser({name:user.name,email:user.email});
+            setUser({name:user.name,email:user.email,avatar});
             setName("");
             setEmail("");
             setPassword("");

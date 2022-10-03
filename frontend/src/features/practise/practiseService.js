@@ -5,6 +5,15 @@ const API_URL = "/api/practise/";
 
 const getPractise = async () => {
     try {
+
+        await axios.delete(API_URL, {
+            headers: {
+                Authorization: `Bearer ${
+                    JSON.parse(localStorage.getItem("user")).token
+                }`,
+            },
+        });
+
         const response = await axios.get(API_URL, {
             headers: {
                 Authorization: `Bearer ${

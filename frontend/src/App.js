@@ -15,8 +15,10 @@ import Register from "./pages/Register";
 import Profile from "./pages/Profile";
 import Header from "./components/Header";
 
+
 import { UserProvider } from "./features/auth/userContext";
 import { TaskProvider } from "./features/tasks/TaskContext";
+
 import { PractiseProvider } from "./features/practise/PractiseContext";
 
 function App() {
@@ -29,19 +31,16 @@ function App() {
                             <div className="container">
                                 <Header />
                                 <Routes>
-                                    <Route path="/dashboard" element={<Dashboard />} />
+                                    <Route path = "/" element={<Landing />}/>
                                     <Route path="/login" element={<Login />} />
                                     <Route
                                         path="/register"
                                         element={<Register />}
                                     />
+                                    <Route path="/dashboard" element={<Dashboard />} />
                                     <Route
                                         path="/profile"
                                         element={<Profile />}
-                                    />
-                                    <Route
-                                        path="/landing"
-                                        element={<Landing />}
                                     />
                                 </Routes>
                             </div>

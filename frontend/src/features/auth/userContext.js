@@ -1,11 +1,6 @@
 import { createContext, useState } from "react";
 
-// import {
-//     createSlice,
-//     createAsyncThunk
-// } from '@reduxjs/toolkit';
 
-// // get user from local storage
 
 
 const userContext = createContext();
