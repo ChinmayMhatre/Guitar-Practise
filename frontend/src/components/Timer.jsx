@@ -28,7 +28,7 @@ const Timer = ({ task , setTask}) => {
         console.log("start");
         run();
         setStatus(1);
-        setInterv(setInterval(run, 10));
+        setInterv(setInterval(run, 1000));
     };
 
     useEffect(() => {

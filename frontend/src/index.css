@@ -1,4 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 * {
     margin: 0;
@@ -9,8 +12,12 @@
 body {
     font-family: "Poppins", sans-serif;
     height: 100vh;
-    background: linear-gradient(to right top, #65dfc9, #6cdbeb);
-}  
+    background: #2193b0;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #6dd5ed, #2193b0);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #6dd5ed, #2193b0); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+    
+}
 
 a {
     text-decoration: none;
@@ -295,6 +302,8 @@ h3 {
 }
 
 /* Dashboard */
+
+
 
 #appbar {
     -webkit-box-shadow: none;

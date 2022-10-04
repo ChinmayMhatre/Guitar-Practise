@@ -43,8 +43,9 @@ function Profile() {
                     {
                         label: "Practise Duration (Minutes)",
                         data: result.map((item) => item.duration),
-                        backgroundColor: "rgba(255, 99, 132, 0.2)",
+                        backgroundColor: "rgba(255, 99, 132, 0.6)",
                         borderColor: "rgba(255, 99, 132, 1)",
+                        color:"#ececec",
                         borderWidth: 1,
                     },
                 ],
@@ -70,7 +71,9 @@ function Profile() {
                     }} src={user.avatar}/>
                 {user ? (
                     <>
-                        <h1>{user.name}</h1>
+                        <h1 
+                            className=" text-xl text-white"
+                        >{user.name}</h1>
                     </>
                 ) : null}
             </Box>

@@ -20,16 +20,10 @@ function PerformTask({ id }) {
 
     return (
         <>
-            {/* The component renders the name of the task, the difficulty and a timer that has a start, pause and stop button. */}
             {currentTask ? (
                 <Box>
-                    <Box
-                    >
-                        <h2
-                            style={{
-                                fontSize: "3.5rem",
-                            }}
-                        >
+                    <Box className="flex flex-col justify-center items-center mt-5">
+                        <h2 className="text-white text-center text-6xl">
                             {currentTask.title}
                         </h2>
                         <Chip
@@ -43,6 +37,9 @@ function PerformTask({ id }) {
                                         : "#f44336"
                                 }`,
                                 color: "white",
+                                fontSize: "1.2rem",
+                                py: "0.5rem",
+                                px: "1rem",
                             }}
                         />
                     </Box>
@@ -51,10 +48,9 @@ function PerformTask({ id }) {
                             mt: 3,
                         }}
                     >
-                        <Timer task={currentTask} setTask = {setCurrentTask} />
+                        <Timer task={currentTask} setTask={setCurrentTask} />
+                        <Metronome />
                     </Box>
-
-                    <Metronome />
                 </Box>
             ) : (
                 <Box
@@ -68,7 +64,9 @@ function PerformTask({ id }) {
                         padding: "10px",
                     }}
                 >
-                    <h1>Please select a task to practise</h1>
+                    <h1 className="text-3xl font-medium text-white">
+                        Please select a task to practise
+                    </h1>
                 </Box>
             )}
         </>

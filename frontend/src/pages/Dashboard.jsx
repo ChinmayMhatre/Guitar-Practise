@@ -99,7 +99,7 @@ function Dashboard() {
 
     return (
         <>
-            <div className="container" id="dashboard">
+            <div id="dashboard">
                 <Grid
                     container
                     rowSpacing={1}
@@ -123,7 +123,7 @@ function Dashboard() {
                                 p: 2,
                                 ml: 6,
                                 my: 2,
-                                maxHeight: "85vh",
+                                height: "85vh",
                                 overflowY: "scroll",
                             }}
                             
@@ -205,7 +205,8 @@ function Dashboard() {
                                     position: "absolute",
                                     bottom: 50,
                                     right: 50,
-                                    background: '#65dfc9'
+                                    background: '#2193b0',
+                                    color: 'white',
                                 }}
                                 onClick={handleNewOpen}
                             >
@@ -238,18 +239,6 @@ function Dashboard() {
             />
             <div className="circle1"></div>
             <div className="circle2"></div>
-            {/* <div>
-            <h1>Dashboard</h1>
-            <h2>{user?user.name:""}</h2>
-            <button
-                onClick={() => {
-                    localStorage.removeItem("user");
-                    window.location.reload();
-                }}
-            >
-                Logout
-            </button>
-        </div> */}
         </>
     );
 }

@@ -4,8 +4,8 @@ import {addPractise} from "../features/practise/practiseService";
 
 
 
-// const click1 = "//daveceddia.com/freebies/react-metronome/click1.wav";
-// const click2 = "//daveceddia.com/freebies/react-metronome/click2.wav";
+const click1 = "//daveceddia.com/freebies/react-metronome/click1.wav";
+const click2 = "//daveceddia.com/freebies/react-metronome/click2.wav";
 
 
 
@@ -20,10 +20,10 @@ class Metronome extends Component {
             beatsPerMeasure: 4,
         };
 
-        // this.click1 = new Audio(click1);
-        // this.click2 = new Audio(click2);
-        this.click1 = new Audio(require("../audio/Yeet.mp3"))
-        this.click2 = new Audio(require("../audio/No.mp3"))
+        this.click1 = new Audio(click1);
+        this.click2 = new Audio(click2);
+        // this.click1 = new Audio(require("../audio/Yeet.mp3"))
+        // this.click2 = new Audio(require("../audio/No.mp3"))
     }
 
     handleInputChange = (event) => {

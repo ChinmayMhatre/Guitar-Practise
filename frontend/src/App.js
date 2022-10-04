@@ -28,7 +28,7 @@ function App() {
                 <TaskProvider>
                     <PractiseProvider>
                         <Router>
-                            <div className="container">
+                            <div>
                                 <Header />
                                 <Routes>
                                     <Route path = "/" element={<Landing />}/>

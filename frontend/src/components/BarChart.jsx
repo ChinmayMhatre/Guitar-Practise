@@ -5,6 +5,9 @@ import {Chart as ChartJS} from 'chart.js/auto';
 function BarChart({userData}) {
     return <Bar 
     data={userData} 
+    style={{
+        backgroundColor: "#6cdbeb",
+    }}
     />;
 }
 
