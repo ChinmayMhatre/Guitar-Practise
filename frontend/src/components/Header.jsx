@@ -77,10 +77,10 @@ function Header() {
         <AppBar
             position="static"
             color="transparent"
-            className="glass"
+            className="glass h-16"
             id="appbar"
         >
-            <Container maxWidth="lg">
+            <Container maxWidth="lg" >
                 <Toolbar disableGutters>
                     <Typography
                         variant="h6"
