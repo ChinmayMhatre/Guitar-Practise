@@ -75,9 +75,9 @@ function Header() {
 
     return (
         <AppBar
-            position="static"
             color="transparent"
-            className="glass h-16"
+            position="static"
+            className="h-16"
             id="appbar"
         >
             <Container maxWidth="lg" >
@@ -87,7 +87,7 @@ function Header() {
                         noWrap
                         component="a"
                         href="/"
-                        className=" text-gray-700"
+                        className=" text-white"
                         sx={{
                             mr: 2,
                             display: { xs: "none", md: "flex" },

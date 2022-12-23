@@ -85,11 +85,11 @@ function Register() {
     };
 
     return (
-        <div className="flex justify-center mt-14">
+        <div className="flex justify-center my-2">
             <div className=" bg-gray-200 rounded-2xl w-4/5 md:w-3/5 lg:w-2/5 shadow-lg flex flex-col justify-center p-10 md:py-12 ">
                 <div >
-                <h1 className="text-center font-extrabold text-gray-700 text-4xl" >Register</h1>
-                    <h3 className="text-center font-medium text-xl ">Create a new account and get strumming! </h3>
+                <h1 className="text-center font-extrabold text-gray-700 text-2xl" >Register</h1>
+                    <h3 className="text-center font-medium text-md px-10">Create a new account and get strumming! </h3>
                 </div>
                 <div className="w-full md:px-14 mt-4">
                     <form onSubmit={onSubmit}>
@@ -143,7 +143,7 @@ function Register() {
                     </form>
                 </div>
                 <Link to="/login">
-                    <p className="text-center text-gray-700 mt-4 transition ease-in-out hover:text-cyan-500  hover:transition-all">
+                    <p className="text-center text-gray-700 mt-2 transition ease-in-out hover:text-cyan-500  hover:transition-all">
                         Already have an account? Login
                     </p>
                 </Link>

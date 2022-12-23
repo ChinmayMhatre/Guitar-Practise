@@ -124,7 +124,6 @@ function Dashboard() {
                                 ml: 6,
                                 my: 2,
                                 height: "85vh",
-                                overflowY: "scroll",
                             }}
                             
                         >
@@ -223,7 +222,6 @@ function Dashboard() {
                                 mr: 6,
                                 my: 2,
                                 height: "85vh",
-                                overflowY: "scroll",
                             }}
                         >
                             <PerformTask id={currentTaskId} />

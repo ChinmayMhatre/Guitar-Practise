@@ -7,13 +7,15 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    
 }
 
 .hero{
-    height: calc(100vh - 64px);
+    height:100vh;
 }
 
 body {
+    overflow-x: hidden;
     font-family: "Poppins", sans-serif;
     height: 100vh;
     background: #2193b0;  /* fallback for old browsers */
@@ -55,14 +57,7 @@ h3 {
     margin-top: 3rem;
 }
 
-::-webkit-scrollbar {
-    width: 25px;
-}
 
-::-webkit-scrollbar-track {
-    background: rgba(red, green, blue, alpha);
-    opacity: 0;
-}
 
 .container {
     width: 100%;
@@ -314,6 +309,8 @@ h3 {
     -moz-box-shadow: none;
     box-shadow: none;
 }
+
+
 
 #dashboardGrid {
     -webkit-box-shadow: 0px 20px 32px -24px rgba(0, 0, 0, 0.75);
